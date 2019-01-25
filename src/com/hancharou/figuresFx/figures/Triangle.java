@@ -41,7 +41,7 @@ public class Triangle extends Figure {
     }
 
     @Override
-    public void draw(GraphicsContext gc) {
+    public void drow(GraphicsContext gc) {
         gc.setLineWidth(lineWidth);
         gc.setStroke(color);
         gc.strokePolygon(new double[]{cx, cx + base/2, cx - base/2}, new double[]{cy - base/2, cy + base/2, cy + base/2}, 3);

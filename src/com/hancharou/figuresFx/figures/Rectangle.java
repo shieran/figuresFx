@@ -57,7 +57,7 @@ public class Rectangle extends Figure {
 
 
     @Override
-    public void draw(GraphicsContext gc) {
+    public void drow(GraphicsContext gc) {
         gc.setLineWidth(lineWidth);
         gc.setStroke(color);
         gc.strokeRect(cx - width/2, cy - height/2, width, height);

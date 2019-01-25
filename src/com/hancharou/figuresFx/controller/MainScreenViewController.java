@@ -57,8 +57,8 @@ public class MainScreenViewController implements Initializable {
 
     private void repaint(){
         canva.getGraphicsContext2D().clearRect(0,0,canva.getWidth(), canva.getHeight());
-        Drower<Figure> drower = new Drower<>(figures);
-        drower.drowFigures(canva.getGraphicsContext2D());
+        Drawer<Figure> drower = new Drawer<>(figures);
+        drower.drawFigures(canva.getGraphicsContext2D());
     }
 
 
