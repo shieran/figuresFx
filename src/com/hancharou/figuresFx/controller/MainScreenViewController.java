@@ -33,14 +33,14 @@ public class MainScreenViewController implements Initializable {
         repaint();
     }
 
-    private Figure createFigure(double x, double y){
+    private Figure createFigure(double x, double y) {
         Figure figure = null;
-        switch (random.nextInt(3)){
+        switch (random.nextInt(3)) {
             case Figure.FIGURE_TYPE_CIRCLE:
                 figure = new Circle(x, y, random.nextInt(4), Color.GREEN, random.nextInt(50));
                 break;
             case Figure.FIGURE_TYPE_RECTANGLE:
-                figure = new Rectangle(x, y, random.nextInt(4), Color.BLUE, random.nextInt(70), random.nextInt(100) );
+                figure = new Rectangle(x, y, random.nextInt(4), Color.BLUE, random.nextInt(70), random.nextInt(100));
                 break;
             case Figure.FIGURE_TYPE_TRIANGLE:
                 figure = new Triangle(x, y, random.nextInt(4), Color.RED, random.nextInt(100));
@@ -51,17 +51,15 @@ public class MainScreenViewController implements Initializable {
         return figure;
     }
 
-    private void addFigure(Figure figure){
+    private void addFigure(Figure figure) {
         figures.add(figure);
     }
 
-    private void repaint(){
-        canva.getGraphicsContext2D().clearRect(0,0,canva.getWidth(), canva.getHeight());
+    private void repaint() {
+        canva.getGraphicsContext2D().clearRect(0, 0, canva.getWidth(), canva.getHeight());
         Drawer<Figure> drower = new Drawer<>(figures);
         drower.drawFigures(canva.getGraphicsContext2D());
     }
-
-
 
 
 }
