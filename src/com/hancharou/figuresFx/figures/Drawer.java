@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.util.List;
 
-public class Drawer<T extends Figure & Drowable> {
+public class Drawer<T extends Figure & Drawable> {
     List<T> figures;
 
     public Drawer(List<T> figures) {
@@ -14,7 +14,7 @@ public class Drawer<T extends Figure & Drowable> {
     public void drawFigures(GraphicsContext gs) {
         for (T figure : figures) {
             if (figure != null) {
-                figure.drow(gs);
+                figure.draw(gs);
             }
         }
 

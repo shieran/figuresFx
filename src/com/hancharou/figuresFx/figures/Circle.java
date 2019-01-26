@@ -41,7 +41,7 @@ public class Circle extends Figure{
     }
 
     @Override
-    public void drow(GraphicsContext gc) {
+    public void draw(GraphicsContext gc) {
         gc.setLineWidth(lineWidth);
         gc.setStroke(color);
         gc.strokeOval(cx - radius, cy - radius, radius * 2, radius * 2);

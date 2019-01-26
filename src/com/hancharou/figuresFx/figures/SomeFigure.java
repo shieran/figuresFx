@@ -40,7 +40,7 @@ public class SomeFigure extends Figure {
     }
 
     @Override
-    public void drow(GraphicsContext gc) {
+    public void draw(GraphicsContext gc) {
         gc.setStroke(color);
         gc.setLineWidth(lineWidth);
         gc.strokePolygon(

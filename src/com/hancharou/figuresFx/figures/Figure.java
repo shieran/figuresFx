@@ -2,7 +2,7 @@ package com.hancharou.figuresFx.figures;
 
 import javafx.scene.paint.Color;
 
-public abstract class Figure implements Drowable {
+public abstract class Figure implements Drawable {
     public static final int FIGURE_TYPE_CIRCLE = 0;
     public static final int FIGURE_TYPE_RECTANGLE = 1;
     public static final int FIGURE_TYPE_TRIANGLE = 2;

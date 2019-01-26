@@ -39,7 +39,7 @@ public class Star extends Figure {
     }
 
     @Override
-    public void drow(GraphicsContext gc) {
+    public void draw(GraphicsContext gc) {
         gc.setLineWidth(lineWidth);
         gc.setStroke(color);
         gc.strokePolygon(
