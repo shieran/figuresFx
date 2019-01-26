@@ -35,7 +35,7 @@ public class MainScreenViewController implements Initializable {
 
     private Figure createFigure(double x, double y) {
         Figure figure = null;
-        switch (random.nextInt(3)) {
+        switch (random.nextInt(5)) {
             case Figure.FIGURE_TYPE_CIRCLE:
                 figure = new Circle(x, y, random.nextInt(4), Color.GREEN, random.nextInt(50));
                 break;
@@ -44,6 +44,12 @@ public class MainScreenViewController implements Initializable {
                 break;
             case Figure.FIGURE_TYPE_TRIANGLE:
                 figure = new Triangle(x, y, random.nextInt(4), Color.RED, random.nextInt(100));
+                break;
+            case Figure.FIGURE_TYPE_IT:
+                figure = new SomeFigure(x, y, random.nextInt(4), Color.ORANGE, random.nextInt(750));
+                break;
+            case Figure.FIGURE_TYPE_STAR:
+                figure = new Star(x, y, random.nextInt(4), Color.AQUA, random.nextInt(1000));
                 break;
             default:
                 System.out.println("Unknown figure type");
