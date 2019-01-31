@@ -1,6 +1,8 @@
 package com.hancharou.figuresFx.controller;
 
 import com.hancharou.figuresFx.figures.*;
+import com.hancharou.figuresFx.myOwnExceptions.NullFigureException;
+import com.hancharou.figuresFx.myOwnExceptions.UnknownFigureException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -35,30 +37,43 @@ public class MainScreenViewController implements Initializable {
 
     private Figure createFigure(double x, double y) {
         Figure figure = null;
-        switch (random.nextInt(5)) {
-            case Figure.FIGURE_TYPE_CIRCLE:
-                figure = new Circle(x, y, random.nextInt(4), Color.GREEN, random.nextInt(50));
-                break;
-            case Figure.FIGURE_TYPE_RECTANGLE:
-                figure = new Rectangle(x, y, random.nextInt(4), Color.BLUE, random.nextInt(70), random.nextInt(100));
-                break;
-            case Figure.FIGURE_TYPE_TRIANGLE:
-                figure = new Triangle(x, y, random.nextInt(4), Color.RED, random.nextInt(100));
-                break;
-            case Figure.FIGURE_TYPE_IT:
-                figure = new SomeFigure(x, y, random.nextInt(4), Color.ORANGE, random.nextInt(750));
-                break;
-            case Figure.FIGURE_TYPE_STAR:
-                figure = new Star(x, y, random.nextInt(4), Color.AQUA, random.nextInt(1000));
-                break;
-            default:
-                System.out.println("Unknown figure type");
+        try{
+            switch (random.nextInt(7)) {
+                case Figure.FIGURE_TYPE_CIRCLE:
+                    figure = new Circle(x, y, random.nextInt(4), Color.GREEN, random.nextInt(50));
+                    break;
+                case Figure.FIGURE_TYPE_RECTANGLE:
+                    figure = new Rectangle(x, y, random.nextInt(4), Color.BLUE, random.nextInt(70), random.nextInt(100));
+                    break;
+                case Figure.FIGURE_TYPE_TRIANGLE:
+                    figure = new Triangle(x, y, random.nextInt(4), Color.RED, random.nextInt(100));
+                    break;
+                case Figure.FIGURE_TYPE_IT:
+                    figure = new SomeFigure(x, y, random.nextInt(4), Color.ORANGE, random.nextInt(750));
+                    break;
+                case Figure.FIGURE_TYPE_STAR:
+                    figure = new Star(x, y, random.nextInt(4), Color.AQUA, random.nextInt(1000));
+                    break;
+                default:
+                    throw new UnknownFigureException("Неизвестная фигура");
+            }
+        }catch(UnknownFigureException ufe){
+            System.out.println(ufe.getMessage());
         }
         return figure;
     }
 
     private void addFigure(Figure figure) {
-        figures.add(figure);
+        try {
+            if (figure == null) {
+                throw new NullFigureException("Пустая фигура не может быть добавлена");
+            }
+            figures.add(figure);
+        }catch (NullFigureException nfe){
+            System.out.println(nfe.getMessage());
+        }catch (NullPointerException e){
+            System.out.println();
+        }
     }
 
     private void repaint() {
