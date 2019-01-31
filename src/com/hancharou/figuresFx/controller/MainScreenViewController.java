@@ -31,49 +31,43 @@ public class MainScreenViewController implements Initializable {
 
     @FXML
     private void onMouseClicked(MouseEvent mouseEvent) {
-        addFigure(createFigure(mouseEvent.getX(), mouseEvent.getY()));
+        try {
+            addFigure(createFigure(mouseEvent.getX(), mouseEvent.getY()));
+        } catch (UnknownFigureException | NullFigureException e) {
+            System.out.println(e.getMessage());
+        }
         repaint();
     }
 
-    private Figure createFigure(double x, double y) {
-        Figure figure = null;
-        try{
-            switch (random.nextInt(7)) {
-                case Figure.FIGURE_TYPE_CIRCLE:
-                    figure = new Circle(x, y, random.nextInt(4), Color.GREEN, random.nextInt(50));
-                    break;
-                case Figure.FIGURE_TYPE_RECTANGLE:
-                    figure = new Rectangle(x, y, random.nextInt(4), Color.BLUE, random.nextInt(70), random.nextInt(100));
-                    break;
-                case Figure.FIGURE_TYPE_TRIANGLE:
-                    figure = new Triangle(x, y, random.nextInt(4), Color.RED, random.nextInt(100));
-                    break;
-                case Figure.FIGURE_TYPE_IT:
-                    figure = new SomeFigure(x, y, random.nextInt(4), Color.ORANGE, random.nextInt(750));
-                    break;
-                case Figure.FIGURE_TYPE_STAR:
-                    figure = new Star(x, y, random.nextInt(4), Color.AQUA, random.nextInt(1000));
-                    break;
-                default:
-                    throw new UnknownFigureException("Неизвестная фигура");
-            }
-        }catch(UnknownFigureException ufe){
-            System.out.println(ufe.getMessage());
+    private Figure createFigure(double x, double y) throws UnknownFigureException {
+        Figure figure;
+        switch (random.nextInt(7)) {
+            case Figure.FIGURE_TYPE_CIRCLE:
+                figure = new Circle(x, y, random.nextInt(4), Color.GREEN, random.nextInt(50));
+                break;
+            case Figure.FIGURE_TYPE_RECTANGLE:
+                figure = new Rectangle(x, y, random.nextInt(4), Color.BLUE, random.nextInt(70), random.nextInt(100));
+                break;
+            case Figure.FIGURE_TYPE_TRIANGLE:
+                figure = new Triangle(x, y, random.nextInt(4), Color.RED, random.nextInt(100));
+                break;
+            case Figure.FIGURE_TYPE_IT:
+                figure = new SomeFigure(x, y, random.nextInt(4), Color.ORANGE, random.nextInt(750));
+                break;
+            case Figure.FIGURE_TYPE_STAR:
+                figure = new Star(x, y, random.nextInt(4), Color.AQUA, random.nextInt(1000));
+                break;
+            default:
+                throw new UnknownFigureException("Неизвестная фигура");
         }
         return figure;
     }
 
-    private void addFigure(Figure figure) {
-        try {
-            if (figure == null) {
-                throw new NullFigureException("Пустая фигура не может быть добавлена");
-            }
-            figures.add(figure);
-        }catch (NullFigureException nfe){
-            System.out.println(nfe.getMessage());
-        }catch (NullPointerException e){
-            System.out.println();
+    private void addFigure(Figure figure) throws NullFigureException {
+        if (figure == null) {
+            throw new NullFigureException("Пустая фигура не может быть добавлена");
         }
+        figures.add(figure);
     }
 
     private void repaint() {
